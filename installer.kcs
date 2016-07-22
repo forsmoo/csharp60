@@ -30,7 +30,8 @@ public class CSharp60Installer : Installer
 
         if (res == "y")
         {
-            ThreadingUtils.DispatchOnMainThread(()=>AssetDatabase.Refresh(ImportAssetOptions.DontDownloadFromCacheServer));
+            Terminal.Log("Reimporting now...");
+            ThreadingUtils.DispatchOnMainThread(()=>AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate));
             return false;
         }
 
