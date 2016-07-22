@@ -1,0 +1,41 @@
+using System;
+using System.Linq;
+using Koinonia;
+using UnityEditor;
+
+public class CSharp60Installer : Installer
+{
+    public CSharp60Installer(ITerminalFrontend terminal) : base(terminal)
+    {
+    }
+
+    public override bool PostInstall(Install install)
+    {
+
+        var type =
+            AppDomain.CurrentDomain.GetAssemblies()
+                .Select(_ => _.GetType("AsyncTools"))
+                .FirstOrDefault(_ => _ != null);
+
+
+        if (type != null)
+        {
+            Terminal.Log("CSharp 6.0 Installation Finished");
+            return true;
+        }
+
+        Terminal.Log("CSharp 6.0 needs reimporting to finish installation. Can I do it now? (N/y)");
+
+        var res = Terminal.Read();
+
+        if (res == "y")
+        {
+            AssetDatabase.Refresh(ImportAssetOptions.DontDownloadFromCacheServer);
+            return false;
+        }
+
+
+        Terminal.Log("Allright, I will remind you later.");
+        return false;
+    }
+}
