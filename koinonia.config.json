@@ -4,6 +4,6 @@
   "License" : "MIT",
   "Mappings" : {
     "Default" : "CSharp60SupportAssets",
-    "Root" : "CSharp60Support",
+    "Root" : "CSharp60Support"
   }
 }
