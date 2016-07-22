@@ -31,7 +31,7 @@ public class CSharp60Installer : Installer
         if (res == "y")
         {
             Terminal.Log("Reimporting now...");
-            ThreadingUtils.DispatchOnMainThread(()=>AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate));
+            ThreadingUtils.DispatchOnMainThread(()=>EditorApplication.ExecuteMenuItem("Assets/Reimport All"));
             return false;
         }
 
